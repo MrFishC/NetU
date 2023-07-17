@@ -1,0 +1,46 @@
+plugins {
+    alias(libs.plugins.androidLibrary)
+}
+
+android {
+    namespace 'cn.jack.netu'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    implementation libs.retrofit
+    implementation libs.converter.gson
+    implementation libs.adapter.rxjava3
+    implementation libs.rxjava
+    implementation libs.rxjava3.rxandroid
+    //处理Rxjava内存泄漏[autodispose依赖，注意其版本]
+    implementation libs.autodispose.androidx.lifecycle
+    implementation libs.okhttp3.okhttp
+    implementation libs.okhttp3.logging.interceptor
+
+}
